@@ -9,23 +9,19 @@ mongoose.connect(settings.mongodb)
 
 // Models
 var fs = require('fs');
-var models_path = __dirname + '/core/models'
+var models_path = __dirname + '/models'
 fs.readdirSync(models_path).forEach(function (file) {
   require(models_path+'/'+file)
 })
-
 
 // Start the app
 var vtx=require('./../../../vtxcode/vtx').init(settings,__dirname);
 var app=vtx.getApp();
 
-
-
 // Public Routes
 app.get('/', function(req,res,next) {
 	global.handlers.page(req,res,next,"public/home");
 });
- 
 
 // Admin Routes
 app.get('/admin', function(req,res,next) {
@@ -40,6 +36,10 @@ app.get('/admin/grids', function(req,res,next) {
 app.get('/admin/grid/:id', function(req,res,next) {
 	global.handlers.page(req,res,next,"admin/grid");
 });
+
+// Game routes
+
+
 
 
 /**** VTX Handlers ****/

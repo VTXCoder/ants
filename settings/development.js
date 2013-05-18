@@ -15,6 +15,7 @@ exports.settings={
       	host: "localhost",
       	database: "antytime"
 	},
+	handlersFolder: __dirname+"./../controllers",
 
 	cdn: "/game/",
 
