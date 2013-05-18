@@ -3,6 +3,15 @@ var mongoose = require('mongoose')
   , Schema = mongoose.Schema
   , _ = require('underscore');
 
+/*** VALIDATION ***/
+
+var validateGridName=function(val) {
+	if (val.length==0) return false;
+	if (val.indexOf(" ") !=-1) return false;
+	return true;
+}
+
+/*** SCHEMAS ***/
 
 var GridFeatureSchema=new Schema({
 	type:String,
@@ -18,10 +27,10 @@ var GridTerrainSchema=new Schema({
 });
 
 var GridSchema=new Schema({
-	name: String,
+	name: {type:String,validate:[validateGridName,"The name must not contain spaces."]},
 	active: Boolean, 
-	width: Number,
-	height: Number,
+	width: {type:Number,min:4,max:40},
+	height: {type:Number,min:4,max:40},
 	background: String,
 	features:[GridFeatureSchema],
 	terrain:[GridTerrainSchema]
@@ -32,3 +41,4 @@ GridSchema
   .get(function() { return this.width+"x"+this.height })
 
 mongoose.model("Grid",GridSchema); 
+

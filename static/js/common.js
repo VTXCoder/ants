@@ -18,10 +18,18 @@ $(function() {
 						else Notifier.success("Update successful.");
 				}
 			} else {
-				if (data.errors) {
-					_.each(data.errors,function(err) {
-						Notifier.error(err);
-					});
+				if (data.validationError) {
+
+					console.log(data.validationError);
+
+					if (data.validationError && data.validationError.errors) {
+						_.each(data.validationError.errors,function(err) {
+							Notifier.error(err.message,data.validationError.message);
+						});
+					} else {
+						Notifier.error(data.validationError.message);
+					}
+
 				}
 			}
 		});
@@ -29,3 +37,7 @@ $(function() {
 
 
 });
+
+
+
+

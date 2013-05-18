@@ -26,12 +26,11 @@ global.handlers.addUpdateCall("admin-grid",function(req,id,formData,cb) {
 	console.log(formData);
 	Grid.findById(id,function (err, grid) {
 		if (err) return cb(err);
-		if (formData.active) formData.active=true; else formData.active=false;
 		extras.MergeDocumentForm(grid,formData);
 		grid.save(function(err) {
 			if (err) {
 				console.log(err);
-				return cb(null,{ok:false,errors:["Unknown Error"]});
+				return cb(null,{ok:false,validationError:err});
 			} 
 			return cb(null,{ok:true,redirect:"/admin/grids"});
 		});
