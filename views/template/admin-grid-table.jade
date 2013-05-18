@@ -1,0 +1,13 @@
+// grids
+
+table.break-top.table.table-bordered.table-hover
+	thead
+		tr
+			th Name
+			th Size
+
+	tbody
+	each grid in grids
+		tr(data-navigate-url="/admin/grids/#{grid._id}")
+			td #{grid.name}
+			td #{grid.size}

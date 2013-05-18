@@ -1,0 +1,21 @@
+extends layout
+
+block body
+	div.row
+		span.span12
+			table.table.table-bordered.table-hover
+				thead
+					tr
+						th Domain
+						th Port
+						th Active
+						th Load
+						th Grids
+				tbody
+				each server in servers
+					tr
+						td #{server.domainName}
+						td #{server.port}
+						td #{server.active}
+						td #{server.load}
+						td #{server.grids.length}

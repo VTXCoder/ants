@@ -5,6 +5,8 @@ exports.settings={
 	sessionManagement:'redis',
 	domain:'localhost',
 
+	mongodb: 'mongodb://localhost/test',
+
 	// Postgres
 	postgres: {
 		driver: "pg",
