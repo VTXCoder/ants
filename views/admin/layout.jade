@@ -1,0 +1,46 @@
+!!!5
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport",content="width=device-width,initial-scale=1.0")
+		title Ant
+
+		link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")			
+		link(href="/bootstrap/css/bootstrap-responsive.min.css", rel="stylesheet")	
+		link(href="/stylesheets/style.css", rel="stylesheet")	
+		
+
+		block head
+	body
+
+	header
+	div.container
+		div.navbar.navbar-inverse
+			div.navbar-inner
+				a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.brand(href="/") Ant
+
+				div.nav-collapse.collapse
+					ul.nav
+						li(data-navpage="home")
+							a(href="/") Dashboard
+
+						li(data-navpage="grids")
+							a(href="/grids") Grids
+
+						li(data-navpage="creatures")
+							a(href="/creatures") Creatures 
+
+						li(data-navpage="users")
+							a(href="/users") Users 
+	
+
+
+
+
+		block body
+
+		include jsfiles
