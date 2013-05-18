@@ -2,7 +2,7 @@
 exports.settings={
 	siteName:'Ant.hm',
 	port:3999,
-	sessionManagement:'redis',
+	//sessionManagement:'redis',
 	domain:'localhost',
 
 	mongodb: 'mongodb://localhost/test',

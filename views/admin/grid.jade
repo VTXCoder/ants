@@ -1,0 +1,37 @@
+extends layout
+
+block body
+	div.row
+		span.span12
+			h1 #{grid.name}
+			div.well
+				div.right #{grid._id}
+				form.form-horizontal
+					.control-group
+
+						label.control-label(for='inputName') Name
+						.controls
+							input#inputName(name='name',type='text',value='#{grid.name}')
+
+					.control-group
+						label.control-label(for='inputWidth') Width
+						.controls
+							input.span1#inputWidth(name='width',type='text',value='#{grid.width}')
+
+					.control-group
+						label.control-label(for='inputHeight') Height
+						.controls
+							input.span1#inputHeight(name='height',type='text',value='#{grid.height}')			
+
+					.control-group
+						.controls
+							label.checkbox
+								input(name='active',type='checkbox',checked=grid.active)
+								| Active
+
+				div.form-actions
+					button.btn.btn-success(type='call',data-call='admin-grid',data-id=grid.id) Update Grid
+
+
+ 
+			

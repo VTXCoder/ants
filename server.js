@@ -37,6 +37,9 @@ app.get('/admin/servers', function(req,res,next) {
 app.get('/admin/grids', function(req,res,next) {
 	global.handlers.page(req,res,next,"admin/grids");
 });
+app.get('/admin/grid/:id', function(req,res,next) {
+	global.handlers.page(req,res,next,"admin/grid");
+});
 
 
 /**** VTX Handlers ****/
