@@ -1,4 +1,6 @@
 
+var gridEvents={};
+
 $(function() {
 	
 	// Highlight the correct menu item
@@ -40,4 +42,12 @@ $(function() {
 
 
 
+(function($){
+    $.fn.disableSelection = function() {
+        return this
+                 .attr('unselectable', 'on')
+                 .css('user-select', 'none')
+                 .on('selectstart', false);
+    };
+})(jQuery);
 

@@ -1,0 +1,19 @@
+
+.grid {
+	position:relative;
+	width:10px;height:10px;
+	border:3px solid #ddd;
+	border-radius:15px;
+	overflow:hidden;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	cursor:pointer;
+}
+
+.hoverCell {
+	position:absolute;
+	background-color:#fff;
+	opacity: .3;
+}
+
+

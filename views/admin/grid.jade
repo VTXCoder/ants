@@ -2,27 +2,39 @@ extends layout
 
 block body
 	div.row
-		span.span12
-			h1 #{grid.name}
+		span.span6
+			//h1 #{grid.name}
 			div.well
-				div.right #{grid._id}
+				// div.right #{grid._id}
 				form.form-horizontal
 					.control-group
 
 						label.control-label(for='inputName') Name
 						.controls
-							input#inputName(name='name',type='text',value='#{grid.name}')
+							input#inputName(name='name',type='text',value=grid.name)
 
 					.control-group
 						label.control-label(for='inputWidth') Width
 						.controls
-							input.span1#inputWidth(name='width',type='text',value='#{grid.width}')
-
+							input.span1#inputWidth(name='width',type='text',value=grid.width)
+					
 					.control-group
 						label.control-label(for='inputHeight') Height
 						.controls
-							input.span1#inputHeight(name='height',type='text',value='#{grid.height}')			
+							input.span1#inputHeight(name='height',type='text',value=grid.height)			
 
+					.control-group
+						label.control-label(for='inputBackground') Background
+						.controls
+							input#inputBackground(name='background',type='text',value=grid.background)
+
+					.control-group
+						label.control-label(for='DefaultTerrain') Default Terrain
+						.controls
+							select#inputDefaultTerrain(name='defaultTerrain')
+								each type in grid.terrainTypes()
+									option(value=type,selected=grid.defaultTerrain==type) #{type}
+					
 					.control-group
 						.controls
 							label.checkbox
@@ -31,7 +43,28 @@ block body
 
 				div.form-actions
 					button.btn.btn-success(type='call',data-call='admin-grid',data-id=grid.id) Update Grid
+		span.span6
+			div.well
+				include ../template/admin-grid-features-table
+		
+	div.row
+		div.span9
+			div.well 
+				button.btn.btn-success.buttonLoadGrid(data-id=grid.id) Load Grid
 
 
- 
-			
+				div.grid.break-top
+
+		div.span3
+			div.well
+				div#cellDump
+			div.well
+				div#cellUpdate
+
+
+block js
+	script(src="/js/grid.js")
+
+block css
+	link(href="/css/grid.css", rel="stylesheet")
+

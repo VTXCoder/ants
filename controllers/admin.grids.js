@@ -5,7 +5,7 @@
 
 var mongoose = require('mongoose');
 var Grid = mongoose.model('Grid');
-var extras = require('./../extras');
+var _ = require('underscore');
 
 global.handlers.addPage("admin/grids",function(req,res,cb) {
 	Grid.find({active:true},function (err, grids) {
@@ -26,7 +26,8 @@ global.handlers.addUpdateCall("admin-grid",function(req,id,formData,cb) {
 	console.log(formData);
 	Grid.findById(id,function (err, grid) {
 		if (err) return cb(err);
-		extras.MergeDocumentForm(grid,formData);
+		_.extend(grid,formData);
+		//extras.MergeDocumentForm(grid,formData);
 		grid.save(function(err) {
 			if (err) {
 				console.log(err);

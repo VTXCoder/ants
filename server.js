@@ -36,8 +36,14 @@ app.get('/admin/grids', function(req,res,next) {
 app.get('/admin/grid/:id', function(req,res,next) {
 	global.handlers.page(req,res,next,"admin/grid");
 });
+app.get('/admin/accounts', function(req,res,next) {
+	global.handlers.page(req,res,next,"admin/accounts");
+});
+app.get('/admin/account/:id', function(req,res,next) {
+	global.handlers.page(req,res,next,"admin/account");
+});
 
-// Game routes
+// Game Routes
 
 
 

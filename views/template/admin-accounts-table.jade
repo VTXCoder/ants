@@ -1,0 +1,14 @@
+
+table.break-top.table.table-bordered.table-hover
+	thead
+		tr
+			th Username
+			th Email
+			th Provider
+
+	tbody
+	each account in accounts
+		tr(data-navigate-url="/admin/account/#{account._id}")
+			td #{account.username}
+			td #{account.email}
+			td #{account.provider}

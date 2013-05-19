@@ -1,0 +1,14 @@
+
+table.break-top.table.table-bordered
+	thead
+		tr
+			th Feature
+			th Position
+			th Rotation
+
+	tbody
+	each feature in grid.features
+		tr
+			td #{feature.type}
+			td #{feature.position}
+			td #{feature.rotation}
