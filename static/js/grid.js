@@ -30,7 +30,10 @@ var gridDataObject=function() {
 
 	this.init=function(data) {
 		var self=this;
-		console.log("Creating Grid: "+data.name);
+
+		console.log("Creating Grid: "+data.name+" "+data.id);
+		//console.log(data);
+
 		this.data=data;
 		gridLayout.grid=this;
 
@@ -125,7 +128,7 @@ var gridLayoutObject=function() {
 
 		this.$grid.on("click",function(e) {
 			e.stopPropagation();
-			$(gridEvents).trigger("cellClick",{x:self.grid.hoverX,y:self.grid.hoverY,cell:self.grid.getCell(self.grid.hoverX,self.grid.hoverY)});
+			$(gridEvents).trigger("cellClick",{x:self.grid.hoverX,y:self.grid.hoverY,cell:self.grid.getCell(self.grid.hoverX,self.grid.hoverY),grid:self.grid});
 		});
 
 

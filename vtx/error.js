@@ -6,7 +6,6 @@ exports.addErrorRouting=function(app) {
 		res.format({
 		  html: function() {res.status(404);res.render(__dirname+'/error.jade',{error:[], message: "Page Not Found" ,path: req.path, status: 404});},
 	  	  json: function() {res.status(404);res.type('json');res.send(JSON.stringify({error:"Not Found: "+req.path}));}
-		  
 		});
 	});
 

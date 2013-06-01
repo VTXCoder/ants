@@ -16,6 +16,7 @@ control.addReadCall("grid-data",function(req,id,cb) {
 		if (err) return cb(err);
 		
 		var data={};
+		data.id=grid._id;
 		data.name=grid.name;
 		data.background=settings.cdn + "bg/"+ grid.background;
 		data.width=grid.width;

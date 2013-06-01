@@ -3,24 +3,34 @@
  
 // We need to check that everyone is an admin in here!
 
-var mongoose = require('mongoose');
-var Grid = mongoose.model('Grid');
-var _ = require('underscore');
-var control = require('./../vtx/control');
+var mongoose 	= require('mongoose');
+var Grid 		= mongoose.model('Grid');
+var _ 			= require('underscore');
+var control 	= require('./../vtx/control');
 
-control.addPageRequest("admin/grids",function(req,res,cb) {
+control.addPage("admin/grid/index",function(req,res,cb) {
 	Grid.find({active:true},function (err, grids) {
 	  if (err) return cb(err);
 	  return cb(null,{page:'grids',grids:grids});
 	})
 });
 
-control.addPageRequest("admin/grid",function(req,res,cb) {
+control.addPage("admin/grid/grid",function(req,res,cb) {
 	Grid.findById(req.params.id,function (err, grid) {
 	  if (err) return cb(err);
-	  console.log(grid);
 	  return cb(null,{page:'grids',grid:grid});
 	})
+});
+
+
+control.addPage("admin/grid/position",function(req,res,cb) {
+
+	// Get the data 
+	
+	// Get the partial
+
+
+	return cb(null,{id:req.params.id,x:req.params.x,y:req.params.y});
 });
 
 control.addUpdateCall("admin-grid",function(req,id,formData,cb) {

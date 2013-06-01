@@ -10,6 +10,32 @@ vtx.delete=function(entity,id,cb) {vtx.call("delete",entity,id,null,cb)};
 vtx.update=function(entity,id,data,cb) {vtx.call("put",entity,id,data,cb)};
 vtx.create=function(entity,data,cb) {vtx.call("post",entity,null,data,cb)};
 
+vtx.get=function(entity,id,$e) {
+	var form=null;
+
+	console.log(entity);
+
+	// Remote URL
+	var remoteURL=entity+"/";
+	if (id) remoteURL+=String(id);
+
+	// Make the Ajax call
+	$.ajax({
+		url: remoteURL,
+		dataType: "json",
+		success: function(data) {
+			if (data && data.error) {
+				alert("Server Exception\n\n"+data.error);
+			} else {
+				$e.html(data.html);
+			}
+		},
+		error: function(xhr,testStatus,errorThrown) {
+			console.log(xhr.responseText);
+		}
+	});
+}
+
 vtx.call=function(verb,entity,id,callData,callBack) {
 	var form=null;
 
@@ -60,35 +86,6 @@ vtx.call=function(verb,entity,id,callData,callBack) {
 		data: form,
 		dataType: 'json',
 		type: verb
-	});
-
-};
-
-// Get a specific template as a JSON request
-// Calls back with a jquery object
-vtx.template=function(template,callBack) {
-
-	// Make the Ajax call
-	$.ajax({
-		url: "/template/"+template,
-		//accepts: 'application/json',
-		success: function(data) {
-			//console.log(data);
-			// Error handling incomplete
-			if (data && data.error) {
-				// Incomplete (just alert it for now)
-				//console.log("Server "+data.error);
-				alert("Server Exception\n\n"+data.error);
-			} else {
-				var $t=$("<div />",{id:"template_"+data.name}).html(data.html);
-				callBack($t);
-			}
-		},
-		error: function(xhr,testStatus,errorThrown) {
-			console.log(xhr.responseText);
-		},
-		dataType: 'json',
-		type: 'get'
 	});
 
 };

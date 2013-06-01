@@ -16,11 +16,15 @@ exports.init=function(app) {
 		control.page(req,res,next,"admin/servers");
 	});
 	app.get('/admin/grids', function(req,res,next) {
-		control.page(req,res,next,"admin/grids");
+		control.page(req,res,next,"admin/grid/index");
 	});
 	app.get('/admin/grid/:id', function(req,res,next) {
-		control.page(req,res,next,"admin/grid");
+		control.page(req,res,next,"admin/grid/grid");
 	});
+	app.get('/admin/grid/position/:id/:x/:y', function(req,res,next) {
+		control.page(req,res,next,"admin/grid/position");
+	});
+
 	app.get('/admin/accounts', function(req,res,next) {
 		control.page(req,res,next,"admin/accounts");
 	});

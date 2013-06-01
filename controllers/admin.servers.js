@@ -8,7 +8,7 @@ var GridServer = mongoose.model('GridServer');
 var control = require('./../vtx/control');
 
 
-control.addPageRequest("admin/servers",function(req,res,cb) {
+control.addPage("admin/servers",function(req,res,cb) {
 
 	GridServer.find(function (err, servers) {
 	  if (err) return cb(err);

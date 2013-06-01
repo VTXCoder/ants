@@ -70,6 +70,21 @@ exports.app=function() {
 		} else next();
 	});
 
+	/*
+	app.all('/template/*', function(req,res,next) {
+		var p=req.path.trim().split("/");
+		p.shift();p.shift();p.pop();var entity=p.join("/"); // Insane?!
+		if (entity) {
+			control.template(req,res,entity,req.body,function(err,data){
+				if (err) return next(err);
+				res.contentType('json');
+				data.flash=req.flash();
+				return res.send(data);
+			});
+		} else next();
+	});
+	*/
+	
 	return app;
 }
 
