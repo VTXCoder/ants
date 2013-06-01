@@ -5,8 +5,10 @@
 
 var mongoose = require('mongoose');
 var GridServer = mongoose.model('GridServer');
+var control = require('./../vtx/control');
 
-global.handlers.addPage("admin/servers",function(req,res,cb) {
+
+control.addPageRequest("admin/servers",function(req,res,cb) {
 
 	GridServer.find(function (err, servers) {
 	  if (err) return cb(err);

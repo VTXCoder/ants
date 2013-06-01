@@ -2,7 +2,7 @@
 var env=process.env.NODE_ENV || 'development';
 var settings = require('./../settings/'+env).settings;
 
-require('./../core/models/gridserver');
+require('./../models/gridserver');
 var mongoose = require('mongoose');
 
 mongoose.connect(settings.mongodb)

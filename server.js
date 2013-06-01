@@ -1,56 +1,33 @@
+// VTX Helpers
+var common = require('./vtx/common');
+var control = require('./vtx/control');
+var error = require('./vtx/error');
 
+// Settings
+var settings = common.getSettings();
+//console.log(settings);
 
-var env=process.env.NODE_ENV || 'development';
-var settings = require('./settings/'+env).settings;
-
-
+// Connect to database
 var mongoose = require('mongoose')
-mongoose.connect(settings.mongodb)
+mongoose.connect(common.getMongooseConnectionString(settings))
+console.log("---------------------------------------------");
 
-// Models
-var fs = require('fs');
-var models_path = __dirname + '/models'
-fs.readdirSync(models_path).forEach(function (file) {
-  require(models_path+'/'+file)
-})
+// Initialise the models
+common.initModels();
+console.log("---------------------------------------------");
 
-// Start the app
-var vtx=require('./../../../vtxcode/vtx').init(settings,__dirname);
-var app=vtx.getApp();
+// Initialise the controllers
+common.initControllers();
 
-// Public Routes
-app.get('/', function(req,res,next) {
-	global.handlers.page(req,res,next,"public/home");
-});
+// Create the web server
+var app=require('./vtx/app').app();
+server=app.listen(settings.port);
+console.log("---------------------------------------------");
+console.log(settings.siteName+" - Port: %d - %s", server.address().port, app.settings.env);
+console.log("---------------------------------------------");
 
-// Admin Routes
-app.get('/admin', function(req,res,next) {
-	global.handlers.page(req,res,next,"admin/home");
-});
-app.get('/admin/servers', function(req,res,next) {
-	global.handlers.page(req,res,next,"admin/servers");
-});
-app.get('/admin/grids', function(req,res,next) {
-	global.handlers.page(req,res,next,"admin/grids");
-});
-app.get('/admin/grid/:id', function(req,res,next) {
-	global.handlers.page(req,res,next,"admin/grid");
-});
-app.get('/admin/accounts', function(req,res,next) {
-	global.handlers.page(req,res,next,"admin/accounts");
-});
-app.get('/admin/account/:id', function(req,res,next) {
-	global.handlers.page(req,res,next,"admin/account");
-});
+// Routes
+require('./routes').init(app);
 
-// Game Routes
-
-
-
-
-/**** VTX Handlers ****/
-vtx.ajaxHandling();
-vtx.errorHandling();
-
-
-
+// Error Handling
+error.addErrorRouting(app);

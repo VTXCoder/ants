@@ -6,7 +6,9 @@
 var mongoose = require('mongoose');
 var Grid = mongoose.model('Grid');
 var _ = require('underscore');
+var control = require('./../vtx/control');
 
+/*
 global.handlers.addReadCall("grid-data",function(req,id,cb) {
 	Grid.findById(id,function (err, grid) {
 		if (err) return cb(err);
@@ -23,4 +25,4 @@ global.handlers.addReadCall("grid-data",function(req,id,cb) {
 		return cb(null,data);
 	});
 });
-
+*/
