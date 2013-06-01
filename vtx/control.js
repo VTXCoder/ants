@@ -52,10 +52,35 @@ exports.page=function(req,res,next,page) {
 	});
 };
 
+exports.call=function(req,res,type,entity,id,formData,cb) {
+	if (!calls[entity]) calls[entity]={};
+	if (typeof(calls[entity][type]) == "function") {
+
+		if (type=="read" || type=="delete") {
+			calls[entity][type](req,id,function(err,data) {
+				if (err) return cb(err);
+				return cb(null,data);
+			});
+		} else {
+			calls[entity][type](req,id,formData,function(err,data) {
+				if (err) return cb(err);
+				return cb(null,data);
+			});
+		}
+
+	} else {
+		return cb(new Error("API call not found: "+type+"Call -> "+entity));
+	}
+};
+
+
+
 var addCall=function(entity,type,func) {
 	if (!calls[entity]) calls[entity]={};
 	if (!calls[entity][type]) calls[entity][type]=func;
 };
+
+
 
 var execPage=function(req,res,page,cb) {
 	var def={};

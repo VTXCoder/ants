@@ -1,6 +1,6 @@
-var common = require('./common');
-
-var flash 	= require('connect-flash');
+var common 		= require('./common');
+var control 	= require('./control');
+var flash 		= require('connect-flash');
 var express 	= require('express');
 
 exports.app=function() {
@@ -44,7 +44,31 @@ exports.app=function() {
 		app.use(app.router);
 		app.enable("jsonp callback");
 	});
+	
+	app.get('/vtx.js', function(req, res){
+	    res.sendfile(__dirname+'/vtx.js');
+	});
 
+	app.all('/call/*', function(req,res,next) {
+		var type="";
+		if (req.method=="GET") type="read";
+		if (req.method=="PUT") type="update";
+		if (req.method=="POST") type="create";
+		if (req.method=="DELETE") type="delete";
+		var id=null;
+		var sPath=req.path.split("/");
+		var entity=sPath[2];
+		if (sPath.length>2) id=sPath[3];
+
+		if (type && entity) {
+			control.call(req,res,type,entity,id,req.body,function(err,data){
+				if (err) return next(err);
+				res.contentType('json');
+				data.flash=req.flash();
+				return res.send(data);
+			});
+		} else next();
+	});
 
 	return app;
 }

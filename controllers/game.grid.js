@@ -3,19 +3,21 @@
  
 // We need to check that everyone is an admin in here!
 
-var mongoose = require('mongoose');
-var Grid = mongoose.model('Grid');
-var _ = require('underscore');
-var control = require('./../vtx/control');
+var settings		= require('../vtx/common').getSettings();
+var mongoose 		= require('mongoose');
+var Grid 			= mongoose.model('Grid');
+var _ 				= require('underscore');
+var control 		= require('./../vtx/control');
 
-/*
-global.handlers.addReadCall("grid-data",function(req,id,cb) {
+
+
+control.addReadCall("grid-data",function(req,id,cb) {
 	Grid.findById(id,function (err, grid) {
 		if (err) return cb(err);
 		
 		var data={};
 		data.name=grid.name;
-		data.background=global.settings.cdn + "bg/"+ grid.background;
+		data.background=settings.cdn + "bg/"+ grid.background;
 		data.width=grid.width;
 		data.height=grid.height;
 		data.defaultTerrain=grid.defaultTerrain;
@@ -25,4 +27,4 @@ global.handlers.addReadCall("grid-data",function(req,id,cb) {
 		return cb(null,data);
 	});
 });
-*/
+

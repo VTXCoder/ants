@@ -1,13 +1,13 @@
 
-var env=process.env.NODE_ENV || 'development';
-var settings = require('./../settings/'+env).settings;
+var common = require('../vtx/common');
+var settings = common.getSettings();
+common.initModels();
 
-require('./../models/account');
-var mongoose = require('mongoose');
-
-mongoose.connect(settings.mongodb)
+var mongoose = require('mongoose')
+mongoose.connect(common.getMongooseConnectionString(settings))
 
 var Account = mongoose.model('Account');
+
 
 var g=new Account({
 	username:"vortex",

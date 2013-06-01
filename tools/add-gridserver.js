@@ -1,11 +1,10 @@
 
-var env=process.env.NODE_ENV || 'development';
-var settings = require('./../settings/'+env).settings;
+var common = require('../vtx/common');
+var settings = common.getSettings();
+common.initModels();
 
-require('./../models/gridserver');
-var mongoose = require('mongoose');
-
-mongoose.connect(settings.mongodb)
+var mongoose = require('mongoose')
+mongoose.connect(common.getMongooseConnectionString(settings))
 
 var GridServer = mongoose.model('GridServer');
 
