@@ -37,6 +37,8 @@ control.addUpdateCall("admin-grid-position",function(req,id,formData,cb) {
 		if (err) return cb(err);
 		
 		grid.updateTerrain(formData.x,formData.y,formData.terrain);
+		grid.updateFeature(formData.x,formData.y,formData.feature,formData.rotation);
+
 		//grid.getTerrain(formData.x,formData.y);
 
 		grid.save(function(err) {

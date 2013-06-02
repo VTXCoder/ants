@@ -58,6 +58,9 @@ var gridDataObject=function() {
 		// Background
 		if (this.data.background) gridLayout.renderBackground(this.data.background);
 
+		// Features are purely visual
+		if (this.data.features) gridLayout.renderFeatures(this.data.features);
+
 	};
 
 	this.getCell=function(x,y) {
@@ -140,7 +143,6 @@ var gridLayoutObject=function() {
 			var posX=(self.grid.hoverX-1)*self.cellSize;
 			var posY=(self.grid.hoverY-1)*self.cellSize;
 			var terrain=self.grid.map[self.grid.hoverX-1][self.grid.hoverY-1].terrain;
-			console.log(terrain);
 			var $h=$("<div />",{"class":"hoverCell"}).css({"width":self.cellSize+1,"height":self.cellSize+1,"top":posY,"left":posX});
 			$h.addClass(terrain);
 			this.$grid.append($h);
@@ -163,11 +165,29 @@ var gridLayoutObject=function() {
 
 	this.renderBackground=function(background) {
 		this.$grid.css({"background-image":"url("+background+")"});
-	
-
 	};
 
+	this.renderFeatures=function(features) {
+		var self=this;
+		_.each(features,function(feature) {
+			var posX=(feature.x-1)*self.cellSize;
+			var posY=(feature.y-1)*self.cellSize;
+			var $feature=$("<img />",{"src":feature.path,"class":"feature"});
+			$feature.css({left:posX,top:posY}).rotate(parseInt(feature.rotation));
+			self.$grid.append($feature);
+		});
+	};
 
+	/*
+		this.drawFeature=function(file,width,height,x,y,rotation) {
+		var posX=(x-1)*game.layout.cellSize;
+		var posY=(y-1)*game.layout.cellSize;
+		console.log("Drawing Feature "+file);
+		var $feature=$("<img />",{"src":file,"class":"feature","width":(width*game.layout.scale),"height":(height*game.layout.scale)});
+		$feature.css({left:posX,top:posY}).rotate(parseInt(rotation));
+		this.$g.append($feature);
+		};
+	*/
 
 	_.bindAll();
 }

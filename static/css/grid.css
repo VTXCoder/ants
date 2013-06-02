@@ -17,5 +17,11 @@
 }
 
 .hoverCell.blocked {
-	background-color:#555;
+	visibility:hidden;
 }
+
+.feature {
+	position:absolute;
+
+}
+

@@ -9,9 +9,9 @@ mongoose.connect(common.getMongooseConnectionString(settings))
 var Grid = mongoose.model('Grid');
 
 var g=new Grid({
-	name:"DeadLeaves-1x1",
-	width:30,
-	height:30,
+	name:"DeadLeaves-1x1-Log",
+	width:20,
+	height:10,
 	active:true
 });
 

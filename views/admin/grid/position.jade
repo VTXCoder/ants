@@ -2,8 +2,10 @@ div
 	p Position #{x}/#{y}
 
 	form.form-vertical
+
 		input(type='hidden',name='x',value=x)
 		input(type='hidden',name='y',value=y)	
+
 		.control-group
 			label.control-label(for='terrain') Terrain
 			.controls
@@ -11,6 +13,19 @@ div
 					each type in grid.terrainTypes()
 						option(value=type,selected=grid.getTerrain(x,y)==type) #{type}
 
+		.control-group
+			label.control-label(for='terrain') Feature
+			.controls
+				select#inputFeature(name='feature')
+					option(value="")
+					each type in grid.featureTypes()
+						option(value=type,selected=grid.getFeature(x,y)==type) #{type}
 
+		.control-group
+			label.control-label(for='inputRotation') Feature Rotation
+			.controls
+				input.span1#inputRotation(name='rotation',type='text',value=grid.getFeatureRotation(x,y))			
+
+ 
 		div.form-actions
 			button(type="button").btn.btn-success.buttonUpdate Update
