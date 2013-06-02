@@ -8,6 +8,11 @@ exports.init=function(app) {
 		control.page(req,res,next,"public/home");
 	});
 
+	// Game Routes
+	app.get('/game', function(req,res,next) {
+		control.page(req,res,next,"game/game");
+	});
+
 	// Admin Routes
 	app.get('/admin', function(req,res,next) {
 		control.page(req,res,next,"admin/home");
