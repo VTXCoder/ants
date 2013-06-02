@@ -16,4 +16,6 @@
 	opacity: .3;
 }
 
-
+.hoverCell.blocked {
+	background-color:#555;
+}

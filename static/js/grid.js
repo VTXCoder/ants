@@ -11,15 +11,7 @@ $(function() {
 	gridData=new gridDataObject();
 	gridLayout=new gridLayoutObject();
 
-	// Used by admin
-	$(".buttonLoadGrid").on("click",function() {
-		gridLayout.$grid=$(".grid");
-		var id=$(this).data('id');
-		vtx.read("grid-data",id,function(data) {
-			gridData.init(data);
-		});
-	});
-
+	
 });
 
 var gridDataObject=function() {
@@ -44,13 +36,20 @@ var gridDataObject=function() {
 				this.map[x][y]={};
 		}
 
-		// Default Terrain
+		// Default terrain
 		if (this.data.defaultTerrain) {
 			for (var x=0;x<this.data.width;x++) {
 				for (var y=0;y<this.data.height;y++) { 
 					this.map[x][y].terrain=this.data.defaultTerrain;
 				}
 			}
+		}
+
+		// Specific terrain
+		if (this.data.terrain) {
+			_.each(this.data.terrain,function(e) {
+				self.map[e.left-1][e.top-1].terrain=e.type;
+			});
 		}
 
 		// Create the frame
@@ -140,7 +139,10 @@ var gridLayoutObject=function() {
 			this.$grid.find(".hoverCell").remove();
 			var posX=(self.grid.hoverX-1)*self.cellSize;
 			var posY=(self.grid.hoverY-1)*self.cellSize;
+			var terrain=self.grid.map[self.grid.hoverX-1][self.grid.hoverY-1].terrain;
+			console.log(terrain);
 			var $h=$("<div />",{"class":"hoverCell"}).css({"width":self.cellSize+1,"height":self.cellSize+1,"top":posY,"left":posX});
+			$h.addClass(terrain);
 			this.$grid.append($h);
 
 			$(gridEvents).trigger("cellHover",{x:self.grid.hoverX,y:self.grid.hoverY,grid:self.grid,cell:self.grid.getCell(self.grid.hoverX,self.grid.hoverY)});

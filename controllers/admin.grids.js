@@ -24,13 +24,31 @@ control.addPage("admin/grid/grid",function(req,res,cb) {
 
 
 control.addPage("admin/grid/position",function(req,res,cb) {
+	Grid.findById(req.params.id,function (err, grid) {
+	  	if (err) return cb(err);
+	 	return cb(null,{grid:grid,id:req.params.id,x:req.params.x,y:req.params.y});
+	})
+});
 
-	// Get the data 
-	
-	// Get the partial
 
+control.addUpdateCall("admin-grid-position",function(req,id,formData,cb) {
+	console.log(formData);
+	Grid.findById(id,function (err, grid) {
+		if (err) return cb(err);
+		
+		grid.updateTerrain(formData.x,formData.y,formData.terrain);
+		//grid.getTerrain(formData.x,formData.y);
 
-	return cb(null,{id:req.params.id,x:req.params.x,y:req.params.y});
+		grid.save(function(err) {
+			if (err) {
+				console.log(err);
+				return cb(null,{ok:false,validationError:err});
+			} 
+			return cb(null,{ok:true});
+		});
+
+		
+	});
 });
 
 control.addUpdateCall("admin-grid",function(req,id,formData,cb) {

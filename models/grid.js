@@ -27,8 +27,7 @@ var GridFeatureSchema=new Schema({
 var GridTerrainSchema=new Schema({
 	type:String,
 	left:Number,
-	top:Number,
-	rotation:Number
+	top:Number
 });
 
 var GridSchema=new Schema({
@@ -54,6 +53,23 @@ GridSchema
 GridSchema.methods = {
 	terrainTypes: function() {
 		return terrainTypes;
+	},
+
+	updateTerrain: function(x,y,terrain) {
+		var f=_.find(this.terrain,function(t) {if (t.left==x && t.top==y) return true});
+		if (f) {
+			f.type=terrain;
+		} else {
+			this.terrain.push({left:x,top:y,type:terrain});
+		}
+		console.log("Updating terrain at "+x+"/"+y+" to "+terrain);
+	},
+
+	getTerrain: function(x,y) {
+		var f=_.find(this.terrain,function(t) {if (t.left==x && t.top==y) return true});
+		if (f) return f.type;
+			else
+				return this.defaultTerrain;
 	}
 }
 

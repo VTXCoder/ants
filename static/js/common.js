@@ -6,6 +6,10 @@ $(function() {
 	// Highlight the correct menu item
 	$("ul.nav li[data-navpage="+serverData.page+"]").addClass("active");
 	
+	// Stop all forms from being submitted
+	$("form").on("submit",function(e) {e.preventDefault();});
+
+
 	$("body [data-navigate-url]").on("click",function(){
 		window.location=($(this).data("navigate-url"));
 	});

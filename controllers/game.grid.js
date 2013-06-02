@@ -9,8 +9,6 @@ var Grid 			= mongoose.model('Grid');
 var _ 				= require('underscore');
 var control 		= require('./../vtx/control');
 
-
-
 control.addReadCall("grid-data",function(req,id,cb) {
 	Grid.findById(id,function (err, grid) {
 		if (err) return cb(err);
@@ -22,8 +20,8 @@ control.addReadCall("grid-data",function(req,id,cb) {
 		data.width=grid.width;
 		data.height=grid.height;
 		data.defaultTerrain=grid.defaultTerrain;
-
-		// Other stuff
+		data.terrain=grid.terrain;
+		data.features=grid.features;
 
 		return cb(null,data);
 	});

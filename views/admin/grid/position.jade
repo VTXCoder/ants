@@ -1,3 +1,16 @@
-div Position #{x}/#{y}
+div 
+	p Position #{x}/#{y}
+
+	form.form-vertical
+		input(type='hidden',name='x',value=x)
+		input(type='hidden',name='y',value=y)	
+		.control-group
+			label.control-label(for='terrain') Terrain
+			.controls
+				select#inputTerrain(name='terrain')
+					each type in grid.terrainTypes()
+						option(value=type,selected=grid.getTerrain(x,y)==type) #{type}
 
 
+		div.form-actions
+			button(type="button").btn.btn-success.buttonUpdate Update
