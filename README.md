@@ -1,6 +1,19 @@
 ants
 ====
 
+
+
+25/25
+
+Resolution - 1cm / 1cm 
+
+
+
+
+
+
+
+------------------------
 Game I am developing at ants.hm
 
 

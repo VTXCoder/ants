@@ -52,6 +52,24 @@ html
 
 		block body
 
-		include jsfiles
 
-		block js
+
+		script(src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+		script(src="/js/libs/underscore.min.js")
+		script(src="/bootstrap/js/bootstrap.min.js")
+		script(src="/js/libs/notifier.js")
+		script(src="/js/libs/jQueryRotate.min.js")
+
+		script(src="/vtx.js")
+
+		block prejs
+
+		script(src="/js/common.js")
+		script(src="/js/admin.js")
+
+		block postjs
+
+		script(type='text/javascript')
+			var serverData={page:"#{page}"}
+
+		

@@ -20,17 +20,24 @@ html
 					span.icon-bar
 					span.icon-bar
 					span.icon-bar
-				a.brand(href="/") Ant Development Console
+				a.brand(href="/") ants.hm
 
 				div.nav-collapse.collapse
 					ul.nav
-						li(data-navpage="home")
-							a(href="/admin") Admin
+						li(data-navpage="register")
+							a(href="/register") Register
 
-					ul.nav
-						li(data-navpage="game")
+						li(data-navpage="login")
+							a(href="/login") Sign In
+
+					//	li(data-navpage="game")
 							a(href="/game") #{content.get("game","game")}
 
+
+					ul.nav.pull-right
+						
+						li(data-navpage="home")
+							a(href="/admin") Admin
 
 		block body
 

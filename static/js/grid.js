@@ -59,7 +59,7 @@ var gridDataObject=function() {
 		if (this.data.background) gridLayout.renderBackground(this.data.background);
 
 		// Features are purely visual
-		if (this.data.features) gridLayout.renderFeatures(this.data.features);
+		//if (this.data.features) gridLayout.renderFeatures(this.data.features);
 
 	};
 
@@ -75,8 +75,8 @@ var gridDataObject=function() {
 var gridLayoutObject=function() {
 	this.grid=null;
 	this.$grid=null;
-	this.baseCellSize=25;
-	this.cellSize=25;
+	this.baseCellSize=15;
+	this.cellSize=15;
 	this.frameCellWidth=0;
 	this.frameCellHeight=0;
 	this.frameWidth=0;
@@ -167,6 +167,7 @@ var gridLayoutObject=function() {
 		this.$grid.css({"background-image":"url("+background+")"});
 	};
 
+	/*
 	this.renderFeatures=function(features) {
 		var self=this;
 		_.each(features,function(feature) {
@@ -177,17 +178,8 @@ var gridLayoutObject=function() {
 			self.$grid.append($feature);
 		});
 	};
-
-	/*
-		this.drawFeature=function(file,width,height,x,y,rotation) {
-		var posX=(x-1)*game.layout.cellSize;
-		var posY=(y-1)*game.layout.cellSize;
-		console.log("Drawing Feature "+file);
-		var $feature=$("<img />",{"src":file,"class":"feature","width":(width*game.layout.scale),"height":(height*game.layout.scale)});
-		$feature.css({left:posX,top:posY}).rotate(parseInt(rotation));
-		this.$g.append($feature);
-		};
 	*/
+
 
 	_.bindAll();
 }

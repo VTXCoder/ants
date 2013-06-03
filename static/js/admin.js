@@ -2,6 +2,7 @@
 $(function() {
 
 
+
 	// Used by admin
 	$(".buttonLoadGrid").on("click",function() {
 		gridLayout.$grid=$(".grid");
@@ -41,6 +42,9 @@ $(function() {
 		//console.log(data.cell);
 		$("#cellDump").text("");
 	});
+
+
+	$(".buttonLoadGrid").trigger("click");
 });
 
 

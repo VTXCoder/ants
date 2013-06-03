@@ -1,6 +1,7 @@
 .break {height:20px;}
 .break-top {margin-top:20px;}
 .break.bottom {margin-bottom:20px;}
+.break-right {margin-right:20px;}
 .right {float:right;}
 .clear {clear:both;}
 .clear-right {clear:right;}

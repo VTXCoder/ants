@@ -1,0 +1,22 @@
+extends layout
+
+block body
+
+
+	div.row
+		div.well.span4
+			form
+
+				div.row-fluid
+					input#email(name="email",type="text",placeholder=content.get("account","email_placeholder"))
+					input#pass(name="password",type="text",placeholder=content.get("account","password_placeholder"))
+					input#cpass(name="confirm_password",type="text",placeholder=content.get("account","confirm_password_placeholder"))
+				
+				div.actions
+					button(type="call-create",data-call="account").btn.btn-success #{content.get("account","create_account")}
+
+	div.row
+		div.well.span4
+			a(href="/auth/facebook").facebook_connect
+				div.text
+					| #{content.get("account","register_with_facebook")}

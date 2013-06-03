@@ -19,6 +19,7 @@
     "crypto": "0.0.3",
     "connect-flash": "~0.1.1",
     "express": "~3.2.5",
-    "connect-mongo": "~0.3.2"
+    "connect-mongo": "~0.3.2",
+    "validator": "~1.1.3"
   }
 }

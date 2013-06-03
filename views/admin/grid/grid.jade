@@ -1,11 +1,24 @@
 extends ../layout
 
 block body
+
+	div.row
+		div.span9
+			div.well 
+				button.btn.btn-success.break-right.buttonLoadGrid(data-id=grid.id) Refresh Grid 
+				button.btn.btn-success.break-right.buttonClearTerrain(data-id=grid.id) Clear Terrain 
+				button.btn.btn-success.break-right.buttonShowTerrain(data-id=grid.id) Show Terrain 
+
+				div.grid.break-top
+
+		div.span3
+			div.well
+				div#cellDump
+			div.well
+				div#cellUpdate
 	div.row
 		span.span6
-			//h1 #{grid.name}
 			div.well
-				// div.right #{grid._id}
 				form.form-horizontal
 					.control-group
 
@@ -31,7 +44,7 @@ block body
 					.control-group
 						label.control-label(for='DefaultTerrain') Default Terrain
 						.controls
-							select#inputDefaultTerrain(name='defaultTerrain')
+							select#inputDefaultTerrain(name='defaultTerrain',disabled='true')
 								each type in grid.terrainTypes()
 									option(value=type,selected=grid.defaultTerrain==type) #{type}
 					
@@ -43,26 +56,9 @@ block body
 
 				div.form-actions
 					button.btn.btn-success(type='call',data-call='admin-grid',data-id=grid.id) Update Grid
-		span.span6
-			div.well
-				include features-table
 		
-	div.row
-		div.span9
-			div.well 
-				button.btn.btn-success.buttonLoadGrid(data-id=grid.id) Refresh Grid
 
-
-				div.grid.break-top
-
-		div.span3
-			div.well
-				div#cellDump
-			div.well
-				div#cellUpdate
-
-
-block js
+block prejs
 	script(src="/js/grid.js")
 
 block css

@@ -8,6 +8,22 @@ exports.init=function(app) {
 		control.page(req,res,next,"public/home");
 	});
 
+	app.get('/account', function(req,res,next) {
+		control.page(req,res,next,"public/account");
+	}); 
+
+	app.get('/login', function(req,res,next) {
+		control.page(req,res,next,"public/login");
+	}); 
+
+	app.get('/forgot', function(req,res,next) {
+		control.page(req,res,next,"public/forgot");
+	}); 
+
+	app.get('/register', function(req,res,next) {
+		control.page(req,res,next,"public/register");
+	}); 
+
 	// Game Routes
 	app.get('/game', function(req,res,next) {
 		control.page(req,res,next,"game/game");

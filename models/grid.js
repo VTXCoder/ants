@@ -7,7 +7,7 @@ var settings		= require('../vtx/common').getSettings();
 /*** ENUMS ***/
 
 var terrainTypes=["blocked","leaves","sand","wood"];
-var featureTypes=["green_leaf_200x150","log_500x180"];
+//var featureTypes=["green_leaf_200x150","log_500x180"];
 
 
 /*** VALIDATION ***/
@@ -36,11 +36,11 @@ var GridTerrainSchema=new Schema({
 var GridSchema=new Schema({
 	name: {type:String,validate:[validateGridName,"The name must not contain spaces."]},
 	active: Boolean, 
-	width: {type:Number,min:4,max:40},
-	height: {type:Number,min:4,max:40},
+	width: {type:Number,min:4,max:100},
+	height: {type:Number,min:4,max:100},
 	background: String,
 	defaultTerrain: String,
-	features:[GridFeatureSchema],
+	//features:[GridFeatureSchema],
 	terrain:[GridTerrainSchema]
 });
 
@@ -58,7 +58,7 @@ GridSchema.methods = {
 	terrainTypes: function() {
 		return terrainTypes;
 	},
-
+	/*
 	featureTypes: function() {
 		return featureTypes;
 	},
@@ -103,7 +103,7 @@ GridSchema.methods = {
 			else
 				return 0;
 	},
-
+	*/
 	updateTerrain: function(x,y,terrain) {
 		var f=_.find(this.terrain,function(t) {if (t.left==x && t.top==y) return true});
 		if (f) {

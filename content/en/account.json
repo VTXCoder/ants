@@ -1,4 +1,9 @@
 {
-	"username":"Username"
+	"username":"Username",
+	"email_placeholder":"Email Address",
+	"password_placeholder":"Password",
+	"confirm_password_placeholder":"Confirm Password",
+	"register_with_facebook":"Register with Facebook",
+	"create_account":"Create Account"
 	
 }

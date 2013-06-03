@@ -21,7 +21,7 @@ control.addReadCall("grid-data",function(req,id,cb) {
 		data.height=grid.height;
 		data.defaultTerrain=grid.defaultTerrain;
 		data.terrain=grid.terrain;
-		data.features=grid.clientFeatures();
+		//data.features=grid.clientFeatures();
 
 		return cb(null,data);
 	});
